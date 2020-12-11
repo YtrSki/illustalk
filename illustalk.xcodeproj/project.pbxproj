@@ -1,0 +1,458 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3B2D0B6D229743DEF505FFCF /* Pods_illustalk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6487F4A8EA813508B96DD805 /* Pods_illustalk.framework */; };
+		7511FC162541509200487347 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7511FC152541509200487347 /* VideoViewController.swift */; };
+		7511FC1A2541512800487347 /* VideoViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7511FC192541512800487347 /* VideoViewController.storyboard */; };
+		752B945825303E5400BBE697 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752B945725303E5400BBE697 /* AppDelegate.swift */; };
+		752B945A25303E5400BBE697 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752B945925303E5400BBE697 /* SceneDelegate.swift */; };
+		752B945C25303E5400BBE697 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752B945B25303E5400BBE697 /* ViewController.swift */; };
+		752B945F25303E5400BBE697 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 752B945D25303E5400BBE697 /* Main.storyboard */; };
+		752B946125303E5500BBE697 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 752B946025303E5500BBE697 /* Assets.xcassets */; };
+		752B946425303E5500BBE697 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 752B946225303E5500BBE697 /* LaunchScreen.storyboard */; };
+		754B63D125662F6300F287F8 /* Hiragana2Roman.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754B63D025662F6300F287F8 /* Hiragana2Roman.swift */; };
+		75AC249A254E91B80022163D /* ReceivedSketchViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75AC2499254E91B80022163D /* ReceivedSketchViewController.storyboard */; };
+		75AC249D254E92B30022163D /* ReceivedSketchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AC249C254E92B30022163D /* ReceivedSketchViewController.swift */; };
+		DEBC5DD625484C39006AB120 /* SketchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBC5DD525484C39006AB120 /* SketchViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		6487F4A8EA813508B96DD805 /* Pods_illustalk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_illustalk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D91113FE57E891DE5142F64 /* Pods-illustalk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-illustalk.release.xcconfig"; path = "Target Support Files/Pods-illustalk/Pods-illustalk.release.xcconfig"; sourceTree = "<group>"; };
+		7511FC152541509200487347 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
+		7511FC192541512800487347 /* VideoViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VideoViewController.storyboard; sourceTree = "<group>"; };
+		752B945425303E5400BBE697 /* illustalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = illustalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		752B945725303E5400BBE697 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		752B945925303E5400BBE697 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		752B945B25303E5400BBE697 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		752B945E25303E5400BBE697 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		752B946025303E5500BBE697 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		752B946325303E5500BBE697 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		752B946525303E5500BBE697 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		754B63D025662F6300F287F8 /* Hiragana2Roman.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hiragana2Roman.swift; sourceTree = "<group>"; };
+		75AC2499254E91B80022163D /* ReceivedSketchViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReceivedSketchViewController.storyboard; sourceTree = "<group>"; };
+		75AC249C254E92B30022163D /* ReceivedSketchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedSketchViewController.swift; sourceTree = "<group>"; };
+		AD860CBAE93ED7B870204680 /* Pods-illustalk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-illustalk.debug.xcconfig"; path = "Target Support Files/Pods-illustalk/Pods-illustalk.debug.xcconfig"; sourceTree = "<group>"; };
+		DEBC5DD525484C39006AB120 /* SketchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		752B945125303E5400BBE697 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B2D0B6D229743DEF505FFCF /* Pods_illustalk.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		368664DA8BD3F8843CD6586A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AD860CBAE93ED7B870204680 /* Pods-illustalk.debug.xcconfig */,
+				6D91113FE57E891DE5142F64 /* Pods-illustalk.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		7077D65CC041C73B6ABBD58D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6487F4A8EA813508B96DD805 /* Pods_illustalk.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		752B944B25303E5400BBE697 = {
+			isa = PBXGroup;
+			children = (
+				752B945625303E5400BBE697 /* illustalk */,
+				752B945525303E5400BBE697 /* Products */,
+				368664DA8BD3F8843CD6586A /* Pods */,
+				7077D65CC041C73B6ABBD58D /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		752B945525303E5400BBE697 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				752B945425303E5400BBE697 /* illustalk.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		752B945625303E5400BBE697 /* illustalk */ = {
+			isa = PBXGroup;
+			children = (
+				DE129C1825304241004C5B1F /* Sketch */,
+				DE129C17253041F1004C5B1F /* Video */,
+				752B945725303E5400BBE697 /* AppDelegate.swift */,
+				752B945925303E5400BBE697 /* SceneDelegate.swift */,
+				752B945B25303E5400BBE697 /* ViewController.swift */,
+				752B945D25303E5400BBE697 /* Main.storyboard */,
+				752B946025303E5500BBE697 /* Assets.xcassets */,
+				752B946225303E5500BBE697 /* LaunchScreen.storyboard */,
+				752B946525303E5500BBE697 /* Info.plist */,
+				754B63D025662F6300F287F8 /* Hiragana2Roman.swift */,
+			);
+			path = illustalk;
+			sourceTree = "<group>";
+		};
+		DE129C17253041F1004C5B1F /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				7511FC152541509200487347 /* VideoViewController.swift */,
+				7511FC192541512800487347 /* VideoViewController.storyboard */,
+				DEBC5DD525484C39006AB120 /* SketchViewController.swift */,
+				75AC2499254E91B80022163D /* ReceivedSketchViewController.storyboard */,
+				75AC249C254E92B30022163D /* ReceivedSketchViewController.swift */,
+			);
+			path = Video;
+			sourceTree = "<group>";
+		};
+		DE129C1825304241004C5B1F /* Sketch */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Sketch;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		752B945325303E5400BBE697 /* illustalk */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 752B946825303E5500BBE697 /* Build configuration list for PBXNativeTarget "illustalk" */;
+			buildPhases = (
+				1A3BB8A389FB4C650A0A5B0F /* [CP] Check Pods Manifest.lock */,
+				752B945025303E5400BBE697 /* Sources */,
+				752B945125303E5400BBE697 /* Frameworks */,
+				752B945225303E5400BBE697 /* Resources */,
+				2B785E060E8F9B3A70345079 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = illustalk;
+			productName = illustalk;
+			productReference = 752B945425303E5400BBE697 /* illustalk.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		752B944C25303E5400BBE697 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1200;
+				LastUpgradeCheck = 1200;
+				TargetAttributes = {
+					752B945325303E5400BBE697 = {
+						CreatedOnToolsVersion = 12.0.1;
+					};
+				};
+			};
+			buildConfigurationList = 752B944F25303E5400BBE697 /* Build configuration list for PBXProject "illustalk" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 752B944B25303E5400BBE697;
+			productRefGroup = 752B945525303E5400BBE697 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				752B945325303E5400BBE697 /* illustalk */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		752B945225303E5400BBE697 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				752B946425303E5500BBE697 /* LaunchScreen.storyboard in Resources */,
+				752B946125303E5500BBE697 /* Assets.xcassets in Resources */,
+				752B945F25303E5400BBE697 /* Main.storyboard in Resources */,
+				7511FC1A2541512800487347 /* VideoViewController.storyboard in Resources */,
+				75AC249A254E91B80022163D /* ReceivedSketchViewController.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1A3BB8A389FB4C650A0A5B0F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-illustalk-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2B785E060E8F9B3A70345079 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-illustalk/Pods-illustalk-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-illustalk/Pods-illustalk-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-illustalk/Pods-illustalk-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		752B945025303E5400BBE697 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DEBC5DD625484C39006AB120 /* SketchViewController.swift in Sources */,
+				752B945C25303E5400BBE697 /* ViewController.swift in Sources */,
+				754B63D125662F6300F287F8 /* Hiragana2Roman.swift in Sources */,
+				752B945825303E5400BBE697 /* AppDelegate.swift in Sources */,
+				75AC249D254E92B30022163D /* ReceivedSketchViewController.swift in Sources */,
+				7511FC162541509200487347 /* VideoViewController.swift in Sources */,
+				752B945A25303E5400BBE697 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		752B945D25303E5400BBE697 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				752B945E25303E5400BBE697 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		752B946225303E5500BBE697 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				752B946325303E5500BBE697 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		752B946625303E5500BBE697 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		752B946725303E5500BBE697 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		752B946925303E5500BBE697 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD860CBAE93ED7B870204680 /* Pods-illustalk.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G6G99FH3BK;
+				INFOPLIST_FILE = illustalk/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "b1018133-fun.ac.jp.illustalk";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		752B946A25303E5500BBE697 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6D91113FE57E891DE5142F64 /* Pods-illustalk.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G6G99FH3BK;
+				INFOPLIST_FILE = illustalk/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "b1018133-fun.ac.jp.illustalk";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		752B944F25303E5400BBE697 /* Build configuration list for PBXProject "illustalk" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				752B946625303E5500BBE697 /* Debug */,
+				752B946725303E5500BBE697 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		752B946825303E5500BBE697 /* Build configuration list for PBXNativeTarget "illustalk" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				752B946925303E5500BBE697 /* Debug */,
+				752B946A25303E5500BBE697 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 752B944C25303E5400BBE697 /* Project object */;
+}

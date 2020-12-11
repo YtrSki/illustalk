@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="ipad9_7" orientation="portrait" layout="fullscreen" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Received Sketch View Controller-->
+        <scene sceneID="pAe-KL-vty">
+            <objects>
+                <viewController storyboardIdentifier="receivedSketchViewController" id="63P-MP-4x4" customClass="ReceivedSketchViewController" customModule="illustalk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="41I-66-3RE">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FIK-i3-Eqr">
+                                <rect key="frame" x="0.0" y="146.5" width="768" height="877.5"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dnY-8Q-zWs">
+                                <rect key="frame" x="621" y="20" width="136" height="54"/>
+                                <color key="backgroundColor" name="AccentColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="136" id="8Pe-Kq-cLP"/>
+                                    <constraint firstAttribute="height" constant="54" id="nMO-4d-gW9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <state key="normal" title="もどる">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="backButtonAction:" destination="63P-MP-4x4" eventType="touchUpInside" id="gr1-k3-Vc8"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="イラストが送られてきました" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="biQ-kC-p2b">
+                                <rect key="frame" x="20" y="82" width="728" height="33.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="WMA-5c-R52"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="WMA-5c-R52" firstAttribute="trailing" secondItem="biQ-kC-p2b" secondAttribute="trailing" constant="20" id="1b9-XS-aly"/>
+                            <constraint firstItem="FIK-i3-Eqr" firstAttribute="bottom" secondItem="WMA-5c-R52" secondAttribute="bottom" id="9s9-KD-UO1"/>
+                            <constraint firstItem="biQ-kC-p2b" firstAttribute="leading" secondItem="WMA-5c-R52" secondAttribute="leading" constant="20" id="Rex-bN-42c"/>
+                            <constraint firstItem="dnY-8Q-zWs" firstAttribute="top" secondItem="WMA-5c-R52" secondAttribute="top" constant="20" id="UW7-hO-gJ2"/>
+                            <constraint firstItem="FIK-i3-Eqr" firstAttribute="leading" secondItem="WMA-5c-R52" secondAttribute="leading" id="XXB-IK-TPw"/>
+                            <constraint firstItem="biQ-kC-p2b" firstAttribute="top" secondItem="WMA-5c-R52" secondAttribute="top" constant="82" id="a6g-xU-gdv"/>
+                            <constraint firstItem="FIK-i3-Eqr" firstAttribute="top" secondItem="biQ-kC-p2b" secondAttribute="bottom" constant="31" id="lMN-HV-f8F"/>
+                            <constraint firstItem="WMA-5c-R52" firstAttribute="trailing" secondItem="dnY-8Q-zWs" secondAttribute="trailing" constant="11" id="rwr-5f-5L7"/>
+                            <constraint firstItem="FIK-i3-Eqr" firstAttribute="trailing" secondItem="WMA-5c-R52" secondAttribute="trailing" id="sIm-XG-MCH"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="senderNameLabel" destination="biQ-kC-p2b" id="12m-xQ-aTc"/>
+                        <outlet property="sketchImageView" destination="FIK-i3-Eqr" id="ab2-RH-9EZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DRs-RE-2SO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-91.40625" y="73.828125"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

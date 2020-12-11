@@ -1,0 +1,6 @@
+framework module Pods_illustalk {
+  umbrella header "Pods-illustalk-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,20 @@
+PODS:
+  - Sketch (3.0)
+  - SkyWay (3.0.0)
+
+DEPENDENCIES:
+  - Sketch
+  - SkyWay
+
+SPEC REPOS:
+  trunk:
+    - Sketch
+    - SkyWay
+
+SPEC CHECKSUMS:
+  Sketch: 49a4b71f7bc77316ed5f75ee79dedaa2b844d5e7
+  SkyWay: 5540374bcf8bd30f7e0214fd0b30c34ed19a7abd
+
+PODFILE CHECKSUM: 0c1df22a84b4e2df98b40c245d6af92ee10bef72
+
+COCOAPODS: 1.9.3
