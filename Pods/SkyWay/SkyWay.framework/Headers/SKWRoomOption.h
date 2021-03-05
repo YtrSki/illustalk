@@ -50,13 +50,17 @@ typedef NS_ENUM(NSUInteger, SKWRoomModeEnum)
 //! \~
 @property (nonatomic, assign) NSInteger audioBandwidth;
 
-//! \~japanese 映像コーデックを明示的に指定します。 (例:H264)
-//! \~english A video codec like 'H264'
+//! \~japanese 映像コーデックを指定します。対応コーデックは端末機種により異なります。\n
+//! 取りうる値は次のとおりです。'H264', 'VP8', 'VP9' メッシュ接続のみ使用可能です。
+//! \~english Video Codec. The supported codecs are different depending on the device model.\n
+//! The following values are possible. 'H264', 'VP8', 'VP9' Only available when mode is 'mesh'.
 //! \~
 @property (nonatomic, copy) NSString* __nullable videoCodec;
 
-//! \~japanese 音声コーデックを明示的に指定します。 (例:PCMU)
-//! \~english A audio codec like 'PCMU'
+//! \~japanese 音声コーデックを指定します。対応コーデックは端末機種により異なります。\n
+//! 取りうる値は次のとおりです。'opus', 'ISAC', 'G722', 'PCMU', 'PCMA' メッシュ接続のみ使用可能です。
+//! \~english Audio Codec. The supported codecs are different depending on the device model.\n
+//! The following values are possible. 'opus', 'ISAC', 'G722', 'PCMU', 'PCMA' Only available when mode is 'mesh'.
 //! \~
 @property (nonatomic, copy) NSString* __nullable audioCodec;
 

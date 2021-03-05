@@ -41,9 +41,10 @@ class SketchViewController: UIViewController {
     }
     
     @IBAction func allClearButton(_ sender: Any) {
-        
-        //アラートコントローラーを表示する。
-        self.present(alert, animated: true, completion: nil)
+        let popUpClearViewController: PopUpClearViewController = UIStoryboard(name: "PopUpClearViewController", bundle: nil).instantiateViewController(withIdentifier: "popUpClearViewController") as! PopUpClearViewController // ポップアップ画面のViewControllerをインスタンス化する
+        popUpClearViewController.modalPresentationStyle = .overFullScreen // 今のビューに重ねるように表示
+        popUpClearViewController.modalTransitionStyle = .crossDissolve // 画面切り替わりのアニメーションをクロスディゾルブに変更
+        present(popUpClearViewController, animated: true, completion: nil)
     }
 
     

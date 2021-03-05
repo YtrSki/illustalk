@@ -19,6 +19,14 @@
 		754B63D125662F6300F287F8 /* Hiragana2Roman.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754B63D025662F6300F287F8 /* Hiragana2Roman.swift */; };
 		75AC249A254E91B80022163D /* ReceivedSketchViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75AC2499254E91B80022163D /* ReceivedSketchViewController.storyboard */; };
 		75AC249D254E92B30022163D /* ReceivedSketchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AC249C254E92B30022163D /* ReceivedSketchViewController.swift */; };
+		75F1DFB325F22685006C2C77 /* PopUpLeaveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F1DFAD25F22685006C2C77 /* PopUpLeaveViewController.swift */; };
+		75F1DFB425F22685006C2C77 /* PopUpLeaveViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75F1DFAE25F22685006C2C77 /* PopUpLeaveViewController.storyboard */; };
+		75F1DFB525F22685006C2C77 /* PopUpSketchSendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F1DFAF25F22685006C2C77 /* PopUpSketchSendViewController.swift */; };
+		75F1DFB625F22685006C2C77 /* PopUpClearViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F1DFB025F22685006C2C77 /* PopUpClearViewController.swift */; };
+		75F1DFB725F22685006C2C77 /* PopUpClearViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75F1DFB125F22685006C2C77 /* PopUpClearViewController.storyboard */; };
+		75F1DFB825F22685006C2C77 /* PopUpSketchSendViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75F1DFB225F22685006C2C77 /* PopUpSketchSendViewController.storyboard */; };
+		75F1DFBB25F22C0B006C2C77 /* PopUpMessegeViewContorller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F1DFBA25F22C0B006C2C77 /* PopUpMessegeViewContorller.swift */; };
+		75F1DFBF25F22C2A006C2C77 /* PopUpMessegeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75F1DFBE25F22C2A006C2C77 /* PopUpMessegeViewController.storyboard */; };
 		DEBC5DD625484C39006AB120 /* SketchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBC5DD525484C39006AB120 /* SketchViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +46,14 @@
 		754B63D025662F6300F287F8 /* Hiragana2Roman.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hiragana2Roman.swift; sourceTree = "<group>"; };
 		75AC2499254E91B80022163D /* ReceivedSketchViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReceivedSketchViewController.storyboard; sourceTree = "<group>"; };
 		75AC249C254E92B30022163D /* ReceivedSketchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedSketchViewController.swift; sourceTree = "<group>"; };
+		75F1DFAD25F22685006C2C77 /* PopUpLeaveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpLeaveViewController.swift; sourceTree = "<group>"; };
+		75F1DFAE25F22685006C2C77 /* PopUpLeaveViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PopUpLeaveViewController.storyboard; sourceTree = "<group>"; };
+		75F1DFAF25F22685006C2C77 /* PopUpSketchSendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpSketchSendViewController.swift; sourceTree = "<group>"; };
+		75F1DFB025F22685006C2C77 /* PopUpClearViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpClearViewController.swift; sourceTree = "<group>"; };
+		75F1DFB125F22685006C2C77 /* PopUpClearViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PopUpClearViewController.storyboard; sourceTree = "<group>"; };
+		75F1DFB225F22685006C2C77 /* PopUpSketchSendViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PopUpSketchSendViewController.storyboard; sourceTree = "<group>"; };
+		75F1DFBA25F22C0B006C2C77 /* PopUpMessegeViewContorller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpMessegeViewContorller.swift; sourceTree = "<group>"; };
+		75F1DFBE25F22C2A006C2C77 /* PopUpMessegeViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PopUpMessegeViewController.storyboard; sourceTree = "<group>"; };
 		AD860CBAE93ED7B870204680 /* Pods-illustalk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-illustalk.debug.xcconfig"; path = "Target Support Files/Pods-illustalk/Pods-illustalk.debug.xcconfig"; sourceTree = "<group>"; };
 		DEBC5DD525484C39006AB120 /* SketchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -92,7 +108,7 @@
 		752B945625303E5400BBE697 /* illustalk */ = {
 			isa = PBXGroup;
 			children = (
-				DE129C1825304241004C5B1F /* Sketch */,
+				75F1DFAC25F22685006C2C77 /* PopUp */,
 				DE129C17253041F1004C5B1F /* Video */,
 				752B945725303E5400BBE697 /* AppDelegate.swift */,
 				752B945925303E5400BBE697 /* SceneDelegate.swift */,
@@ -106,6 +122,22 @@
 			path = illustalk;
 			sourceTree = "<group>";
 		};
+		75F1DFAC25F22685006C2C77 /* PopUp */ = {
+			isa = PBXGroup;
+			children = (
+				75F1DFAD25F22685006C2C77 /* PopUpLeaveViewController.swift */,
+				75F1DFAE25F22685006C2C77 /* PopUpLeaveViewController.storyboard */,
+				75F1DFAF25F22685006C2C77 /* PopUpSketchSendViewController.swift */,
+				75F1DFB025F22685006C2C77 /* PopUpClearViewController.swift */,
+				75F1DFB125F22685006C2C77 /* PopUpClearViewController.storyboard */,
+				75F1DFB225F22685006C2C77 /* PopUpSketchSendViewController.storyboard */,
+				75F1DFBA25F22C0B006C2C77 /* PopUpMessegeViewContorller.swift */,
+				75F1DFBE25F22C2A006C2C77 /* PopUpMessegeViewController.storyboard */,
+			);
+			name = PopUp;
+			path = ../../elderly_illustalk/illustalk/PopUp;
+			sourceTree = "<group>";
+		};
 		DE129C17253041F1004C5B1F /* Video */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,13 +148,6 @@
 				75AC249C254E92B30022163D /* ReceivedSketchViewController.swift */,
 			);
 			path = Video;
-			sourceTree = "<group>";
-		};
-		DE129C1825304241004C5B1F /* Sketch */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Sketch;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -184,10 +209,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75F1DFB725F22685006C2C77 /* PopUpClearViewController.storyboard in Resources */,
+				75F1DFB425F22685006C2C77 /* PopUpLeaveViewController.storyboard in Resources */,
 				752B946425303E5500BBE697 /* LaunchScreen.storyboard in Resources */,
 				752B946125303E5500BBE697 /* Assets.xcassets in Resources */,
 				752B945F25303E5400BBE697 /* Main.storyboard in Resources */,
 				7511FC1A2541512800487347 /* VideoViewController.storyboard in Resources */,
+				75F1DFB825F22685006C2C77 /* PopUpSketchSendViewController.storyboard in Resources */,
+				75F1DFBF25F22C2A006C2C77 /* PopUpMessegeViewController.storyboard in Resources */,
 				75AC249A254E91B80022163D /* ReceivedSketchViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -242,10 +271,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEBC5DD625484C39006AB120 /* SketchViewController.swift in Sources */,
+				75F1DFB625F22685006C2C77 /* PopUpClearViewController.swift in Sources */,
+				75F1DFB325F22685006C2C77 /* PopUpLeaveViewController.swift in Sources */,
 				752B945C25303E5400BBE697 /* ViewController.swift in Sources */,
 				754B63D125662F6300F287F8 /* Hiragana2Roman.swift in Sources */,
 				752B945825303E5400BBE697 /* AppDelegate.swift in Sources */,
 				75AC249D254E92B30022163D /* ReceivedSketchViewController.swift in Sources */,
+				75F1DFBB25F22C0B006C2C77 /* PopUpMessegeViewContorller.swift in Sources */,
+				75F1DFB525F22685006C2C77 /* PopUpSketchSendViewController.swift in Sources */,
 				7511FC162541509200487347 /* VideoViewController.swift in Sources */,
 				752B945A25303E5400BBE697 /* SceneDelegate.swift in Sources */,
 			);

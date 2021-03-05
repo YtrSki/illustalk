@@ -18,8 +18,8 @@
 //! \~
 @property (nonatomic) NSUInteger timestamp;
 
-//! \~japanese Time to live(ttl)。タイムスタンプ + ttl の時間でクレデンシャルが失効します。
-//! \~english Time to live; The credential expires at timestamp + ttl.
+//! \~japanese Time to live(ttl)。タイムスタンプ + ttl の時間でクレデンシャルが失効します。ttlの取りうる値は600~90,000です。
+//! \~english Time to live; The credential expires at timestamp + ttl. The range of possible values for ttl is 600 to 90,000.
 //! \~
 @property (nonatomic) NSUInteger ttl;
 

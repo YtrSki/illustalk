@@ -4,6 +4,8 @@
 //
 //  Created by YutaroSakai on 2020/10/20.
 //
+//  SkyWayの通信実装の参考；https://github.com/taminif/SkyWaySFUSample
+//
 
 import UIKit
 import SkyWay
@@ -28,6 +30,8 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     var peer: SKWPeer?
     var localStream: SKWMediaStream?
     var sfuRoom: SKWSFURoom?
+    
+    var sketchImage: UIImage? = nil // 画像化されたイラストを格納しておく変数
     
     var isClosed: Bool = false // 退出ボタンが押された時に自分のセルの映像を削除する
 
@@ -100,11 +104,6 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
         super.viewDidDisappear(animated)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     deinit {
         localStream = nil
         ownId = ""
@@ -113,32 +112,29 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     }
 
     @IBAction func joinRoom(_ sender: Any) {
-//        guard let roomName = roomName.text, roomName != "" else {
-//            return
-//        }
-//        self.roomName.resignFirstResponder()
-        
-        let roomName = givenRoomName // 前の画面から渡された部屋名をSkyWayのコードに渡す
+        // 前の画面から渡された部屋名をSkyWayのコードに渡す
+        // 何らかの原因で部屋名が正しく渡されなかった場合は、アラートを表示して前の画面に戻る
+        guard let roomName = givenRoomName else {
+            print("正しい部屋名がVideoViewControllerに渡されていない")
+            presentPopUpMessege("通話を始めることができませんでした。前の画面に戻ります。")
+            return
+        }
 
         // join SFU room
         let option = SKWRoomOption.init()
         option.mode = .ROOM_MODE_SFU
         option.stream = self.localStream
-        sfuRoom = peer?.joinRoom(withName: roomNamePrefix + roomName!, options: option) as? SKWSFURoom
+        sfuRoom = peer?.joinRoom(withName: roomNamePrefix + roomName, options: option) as? SKWSFURoom
 
         // room event handling
+        // 通話状態が開始された場合
         sfuRoom?.on(.ROOM_EVENT_OPEN, callback: {obj in
-//            ↓ viewDidLoad()に記載
-//            self.roomNameLabel.text = "部屋名：" + ((obj as? String)?.replacingOccurrences(of: self.roomNamePrefix, with: ""))!
-//            self.roomNameLabel.text = "部屋名：\(self.givenHiraganaRoomName ?? "[部屋名表示エラー(sfuRoom?.on(.ROOM_EVENT_OPEN))]")" // 通話画面に表示するひらがなの部屋名
-//            print("部屋名：" + ((obj as? String)?.replacingOccurrences(of: self.roomNamePrefix, with: ""))!) // デバッグ出力する実際の部屋名
             self.submitButton.isHidden = true
             self.endButton.isHidden = false
-            self.sendIllustButton.isHidden = false
             self.backToTopButton.isHidden = true // 通話を始める前の「戻る」ボタンを見えなくする
             self.waitingOthersView.isHidden = false // 「他の参加者を待っています」のビューを見せる
         })
-
+        
         sfuRoom?.on(.ROOM_EVENT_CLOSE, callback: {obj in
             self.lock.lock()
 
@@ -162,13 +158,14 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
             self.sfuRoom?.offAll()
             self.sfuRoom = nil
         })
-
+        
         sfuRoom?.on(.ROOM_EVENT_STREAM, callback: {obj in
             let mediaStream: SKWMediaStream = obj as! SKWMediaStream
 
             self.lock.lock()
 
             self.waitingOthersView.isHidden = true // 他の参加者が入ってきたら待ち表示を消す
+            self.sendIllustButton.isHidden = false // 他の参加者が入ってきたらイラストを送るボタンを表示する
             
             // add videos
             self.arrayMediaStreams.add(mediaStream)
@@ -176,26 +173,27 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
             self.lock.unlock()
         })
-
-        sfuRoom?.on(.ROOM_EVENT_REMOVE_STREAM, callback: {obj in
-            let mediaStream: SKWMediaStream = obj as! SKWMediaStream
-            let peerId = mediaStream.peerId!
-
-            self.lock.lock()
-
-            // remove video
-            if let video: SKWVideo = self.arrayVideoViews.object(forKey: peerId) as? SKWVideo {
-                mediaStream.removeVideoRenderer(video, track: 0)
-                video.removeFromSuperview()
-                self.arrayVideoViews.removeObject(forKey: peerId)
-            }
-
-            self.arrayMediaStreams.remove(mediaStream)
-            self.collectionView.reloadData()
-
-            self.lock.unlock()
-        })
-
+        
+//        // 'ROOM_EVENT_REMOVE_STREAM' is deprecated: Use PEER_LEAVE event instead.
+//        sfuRoom?.on(.ROOM_EVENT_REMOVE_STREAM, callback: {obj in
+//            let mediaStream: SKWMediaStream = obj as! SKWMediaStream
+//            let peerId = mediaStream.peerId!
+//
+//            self.lock.lock()
+//
+//            // remove video
+//            if let video: SKWVideo = self.arrayVideoViews.object(forKey: peerId) as? SKWVideo {
+//                mediaStream.removeVideoRenderer(video, track: 0)
+//                video.removeFromSuperview()
+//                self.arrayVideoViews.removeObject(forKey: peerId)
+//            }
+//
+//            self.arrayMediaStreams.remove(mediaStream)
+//            self.collectionView.reloadData()
+//
+//            self.lock.unlock()
+//        })
+        
         sfuRoom?.on(.ROOM_EVENT_PEER_LEAVE, callback: {obj in
             let peerId = obj as! String
             var checkStream: SKWMediaStream? = nil
@@ -223,7 +221,7 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
             self.lock.unlock()
         })
         
-        // MARK: スケッチオブジェクト受信処理？
+        // MARK: スケッチオブジェクト受信処理
         sfuRoom?.on(.ROOM_EVENT_DATA, callback: {obj in
             let skwRoomDataMessage: SKWRoomDataMessage = obj as! SKWRoomDataMessage
             let receivedNSData: NSData = skwRoomDataMessage.data as! NSData
@@ -236,6 +234,7 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
             }
             catch {
                 print("受信後変換失敗")
+                self.presentPopUpMessege("誰かからイラストを受け取りましたが、画面に映すことができませんでした。")
                 return
             }
             
@@ -244,44 +243,14 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
             receivedSketchViewController.senderPeerId = skwRoomDataMessage.src
             receivedSketchViewController.modalPresentationStyle = .pageSheet
             self.present(receivedSketchViewController, animated: true, completion: nil)
-            
-/*          SketchView型のデータの送受信は成功したが、これを映すことが出来ない
-            送信者のSketchViewの見た目が見られるようにすればいいので、SketchView型で送受信するのではなく、画像に変換してから送受信してみることにする
-            
-            let sketchViewController: SketchViewController = self.children[0] as! SketchViewController
-            sketchViewController.sketchView = receivedSketchView
-            
-            let receivedSketchViewController = UIStoryboard(name: "ReceivedSketchViewController", bundle: nil).instantiateViewController(withIdentifier: "receivedSketchViewController") as! ReceivedSketchViewController
-            receivedSketchViewController.receivedSketchView = receivedSketchView
-            self.present(receivedSketchViewController, animated: true, completion: nil)
- */
         })
     }
 
     @IBAction func leaveRoom(_ sender: Any) {
-        guard let sfuRoom = self.sfuRoom else {
-            return
-        }
-        let alert = UIAlertController(title: "通話をやめる", message: "通話をやめてもよろしいですか？", preferredStyle: UIAlertController.Style.alert)
-        let alertAction = UIAlertAction(
-            title: "はい",
-            style: UIAlertAction.Style.destructive,
-            handler: { action in
-                // leave SFU room
-                sfuRoom.close()
-                self.dismiss(animated: true, completion: nil)
-            }
-        )
-        let alertAction2 = UIAlertAction(
-            title: "いいえ",
-            style: UIAlertAction.Style.cancel,
-            handler: nil
-        )
-        //アラートアクションを追加する
-        alert.addAction(alertAction)
-        alert.addAction(alertAction2)
-        
-        present(alert, animated: true, completion: nil)
+        let popUpLeaveViewController: PopUpLeaveViewController = UIStoryboard(name: "PopUpLeaveViewController", bundle: nil).instantiateViewController(withIdentifier: "popUpLeaveViewController") as! PopUpLeaveViewController // ポップアップ画面のViewControllerをインスタンス化する
+        popUpLeaveViewController.modalPresentationStyle = .overFullScreen // 今のビューに重ねるように表示
+        popUpLeaveViewController.modalTransitionStyle = .crossDissolve // 画面切り替わりのアニメーションをクロスディゾルブに変更
+        present(popUpLeaveViewController, animated: true, completion: nil)
     }
     
     @IBAction func backToTop(_ sender: Any) {
@@ -291,22 +260,19 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     // MARK: スケッチオブジェクト送信処理
     // ContainerViewの中のSketchViewControllerにあるsketchViewを取り出して送信
     @IBAction func sendSketchView(_ sender: Any) {
-        if self.sfuRoom == nil { return } // 通話始まってなかったらとりあえず何も起こらないようにする
-        let sketchBaseView: UIView = (self.children[0] as! SketchViewController).sketchBaseView
-        let sketchImage: UIImage = sketchViewToUIImage(sketchBaseView)
-        let sketchData: NSData
+        // ポップアップで確認画面を出す
+        if self.sfuRoom == nil { return } // 通話が始まっていなかったら何も起こらないようにする
+        let popUpSketchSendViewController: PopUpSketchSendViewController = UIStoryboard(name: "PopUpSketchSendViewController", bundle: nil).instantiateViewController(withIdentifier: "popUpSketchSendViewController") as! PopUpSketchSendViewController // ポップアップ画面のViewControllerをインスタンス化する
+        let sketchBaseView: UIView = (self.children[0] as! SketchViewController).sketchBaseView // スケッチビューを取得する
+        self.sketchImage = sketchViewToUIImage(sketchBaseView) // スケッチビューを画像化して sketchImage に保存
+        popUpSketchSendViewController.sketchImage = sketchImage // ポップアップ画面に渡す
         
-        do {
-            sketchData = try NSKeyedArchiver.archivedData(withRootObject: sketchImage, requiringSecureCoding: false) as NSData
-        }
-        catch {
-            print("送信前変換失敗")
-            return
-        }
-        
-        print(self.sfuRoom?.send(sketchData) ?? "送信失敗")
+        popUpSketchSendViewController.modalPresentationStyle = .overFullScreen // 今のビューに重ねるように表示
+        popUpSketchSendViewController.modalTransitionStyle = .crossDissolve // 画面切り替わりのアニメーションをクロスディゾルブに変更
+        present(popUpSketchSendViewController, animated: true, completion: nil)
     }
     
+    // UIViewをUIImageへ変換
     func sketchViewToUIImage(_ sketchBaseView: UIView) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(sketchBaseView.bounds.size, true, 0.0)
         let context = UIGraphicsGetCurrentContext()!
@@ -317,6 +283,38 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
         let png = image.pngData()!
         let pngImage = UIImage.init(data: png)!
         return pngImage
+    }
+    
+    // 退出するか確認するポップアップ画面で「はい」が選ばれたら実行される
+    func doLeaveRoom() {
+        // leave SFU room
+        self.sfuRoom?.close()
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    // イラストを送信するか確認するポップアップ画面で「送る」が選ばれたら実行される
+    // 画像化処理はポップアップ画面呼び出し処理 sendSketchView() で実行済み
+    func doSendSketch() {
+        let sketchData: NSData
+        
+        do {
+            sketchData = try NSKeyedArchiver.archivedData(withRootObject: self.sketchImage!, requiringSecureCoding: false) as NSData
+        }
+        catch {
+            print("送信前変換失敗")
+            presentPopUpMessege("イラストを送れませんでした。もう一度お試しください。")
+            return
+        }
+        
+        self.sfuRoom?.send(sketchData)
+    }
+    
+    func presentPopUpMessege(_ messegeText: String) {
+        let popUpMessegeViewController = UIStoryboard(name: "PopUpMessegeViewController", bundle: nil).instantiateViewController(withIdentifier: "popUpMessegeViewController") as! PopUpMessegeViewController
+        popUpMessegeViewController.messegeText = messegeText
+        popUpMessegeViewController.modalPresentationStyle = .overFullScreen
+        popUpMessegeViewController.modalTransitionStyle = .crossDissolve
+        self.present(popUpMessegeViewController, animated: true, completion: nil)
     }
     
     // CollectionView Delegate
@@ -334,6 +332,7 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
         // Configure the cell
         if let view: UIView = cell.viewWithTag(1) {
             switch indexPath.row {
+            // 一番左上のセルには自分のカメラ映像を表示する
             case 0:
                 let video: SKWVideo! = view.viewWithTag(2) as? SKWVideo
                 
@@ -342,6 +341,7 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
                 view.addSubview(video!)
                 video!.setNeedsLayout()
                 break
+            // その他のセルには他の参加者のカメラ映像を表示する
             default:
                 if let stream: SKWMediaStream = arrayMediaStreams.object(at: indexPath.row - 1) as? SKWMediaStream {
                     let peerId: String = stream.peerId!
@@ -369,5 +369,6 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
         return CGSize(width: self.collectionView.bounds.width / 2 - 10, height: self.collectionView.bounds.height / 2 - 10)
     }
 }
+
 
 

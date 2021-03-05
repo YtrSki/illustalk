@@ -110,6 +110,21 @@ typedef NS_ENUM(NSUInteger, SKWDebugLevelEnum)
 //! \~
 @property (nonatomic) BOOL useH264 SKYWAY_API_DEPRECATED;
 
+//! \~japanese
+//! 対向とのメディア通信が切れた際に自動で再接続を試行する場合は YES を設定します。デフォルトでは NO となります。\n\n
+//!  @attention なお、SKWMediaConnectionをお使いの場合で本オプションを YES とする場合は、対向がcloseメソッドを実行した際にcloseイベントの発火までに時間がかかる場合があります。これを避けるため、対向側でcloseメソッドのforceCloseオプションを YES でお使いください。
+//! \~english
+//!   Set the value to YES to try to reconnect automatically when the SKWMediaConnection with the other side is lost. The default value is NO..\n\n
+//!   @attention If you use SKWMediaConnection and this option is set to YES, it may take some time until the close event is fired on the peer after a remote peer executes the close method. To avoid this, please set the forceClose option of the close method to YES on the remote peer.
+//! \~
+@property (nonatomic) BOOL tryReconnectMedia;
+
+//! \~japanese データ通信が切れた際に自動で再接続を試行する場合は YES を設定します。デフォルトでは NO となります。
+//! \~english Set the value to YES to try to reconnect automatically when the data connection is lost. The default value is NO.
+//! \~
+@property (nonatomic) BOOL tryReconnectData;
+
+
 @property (nonatomic) SKWPeerCredential* __nullable credential;
 
 @end

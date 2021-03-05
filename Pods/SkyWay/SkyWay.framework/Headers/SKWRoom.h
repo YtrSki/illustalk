@@ -16,41 +16,47 @@
 typedef NS_ENUM(NSUInteger, SKWRoomEventEnum)
 {
     //! \~japanese 現在のルームに新しいメディアストリームが追加された時のイベントです
-    //! \~english
+    //! \~english MediaStream received from peer in the room.
     //! \~
-    SKW_ROOM_EVENT_STREAM, // arg1 = added stream
+    SKW_ROOM_EVENT_STREAM, // arg = added stream
     //! \~japanese 現在のルームから既存のメディアストリームが削除された時のイベントです
-    //! \~english
+    //! (非推奨)
+    //! @deprecated
+    //! この列挙値は非推奨となりました。代わりに PEER_LEAVE イベントを使用してください。
+    //! \~english MediaStream removed from peer in the room.
+    //! (deprecated)
+    //! @deprecated
+    //! This enumerator is now deprecated. Use PEER_LEAVE event instead.
     //! \~
-    SKW_ROOM_EVENT_REMOVE_STREAM, // arg1 = removed stream
+    SKW_ROOM_EVENT_REMOVE_STREAM __attribute__((deprecated("Use PEER_LEAVE event instead."))), // arg = removed stream
     //! \~japanese ルームに自分が入室した時のイベントです
-    //! \~english
+    //! \~english Room is ready.
     //! \~
-    SKW_ROOM_EVENT_OPEN, // arg1 = room name
-    //! \~japanese 現在のルームから自分が退室したときのイベントです
-    //! \~english
+    SKW_ROOM_EVENT_OPEN, // arg = room name
+    //! \~japanese  現在のルームから自分が退室した時、および SFU サーバーから切断されたとき時のイベントです
+    //! \~english Fired when the Peer left the room, or the connection with the SFU server was disconnected.
     //! \~
-    SKW_ROOM_EVENT_CLOSE, // arg1 = room name
+    SKW_ROOM_EVENT_CLOSE, // arg = room name
     //! \~japanese 現在のルームにリモートピアが入室した時のイベントです
-    //! \~english
+    //! \~english New peer has joined.
     //! \~
-    SKW_ROOM_EVENT_PEER_JOIN, // arg1 = src
+    SKW_ROOM_EVENT_PEER_JOIN, // arg = src
     //! \~japanese 現在のルームからリモートピアが退室した時のイベントです
-    //! \~english
+    //! \~english A peer has left.
     //! \~
-    SKW_ROOM_EVENT_PEER_LEAVE, // arg1 = src
+    SKW_ROOM_EVENT_PEER_LEAVE, // arg = src
     //! \~japanese エラーが発生した時のイベントです
-    //! \~english
+    //! \~english Error occured.
     //! \~
     SKW_ROOM_EVENT_ERROR,
     //! \~japanese 現在のルームにリモートピアがらデータが送信された時のイベントです
-    //! \~english
+    //! \~english Data received from peer.
     //! \~
-    SKW_ROOM_EVENT_DATA, // arg1 = data
+    SKW_ROOM_EVENT_DATA, // arg = msg
     //! \~japanese 現在のルームのログが取得できた時のイベントです
-    //! \~english
+    //! \~english Room's log received.
     //! \~
-    SKW_ROOM_EVENT_LOG, // arg1 = logs
+    SKW_ROOM_EVENT_LOG, // arg = logs
 };
 
 //! \~japanese ルームイベントコールバックシグネチャ
@@ -98,46 +104,47 @@ typedef void (^SKWRoomEventCallback)(NSObject* __nullable arg);
 //! \code{.m}
 //! SKWRoom* room;
 //!
-//! [room on:SKW_ROOM_EVENT_STREAM callback:^(NSObject* arg1, NSObject* arg2) {
-//!     SKWMediaStream* stream = (SKWMediaStream*)arg1;
+//! [room on:SKW_ROOM_EVENT_STREAM callback:^(NSObject* obj) {
+//!     SKWMediaStream* stream = (SKWMediaStream*)obj;
 //! }];
 //!
-//! [room on:SKW_ROOM_EVENT_REMOVE_STREAM callback:^(NSObject* arg1, NSObject* arg2) {
-//!     SKWMediaStream* stream = (SKWMediaStream*)arg1;
+//! [room on:SKW_ROOM_EVENT_REMOVE_STREAM callback:^(NSObject* obj) {
+//!     SKWMediaStream* stream = (SKWMediaStream*)obj;
 //! }];
 //!
-//! [room on:SKW_ROOM_EVENT_OPEN callback:^(NSObject* arg1, NSObject* arg2) {
-//!     NSString* roomName = (NSString*)arg1;
+//! [room on:SKW_ROOM_EVENT_OPEN callback:^(NSObject* obj) {
+//!     NSString* roomName = (NSString*)obj;
 //! }];
 //!
-//! [room on:SKW_ROOM_EVENT_CLOSE callback:^(NSObject* arg1, NSObject* arg2) {
-//!     NSString* roomName = (NSString*)arg1;
+//! [room on:SKW_ROOM_EVENT_CLOSE callback:^(NSObject* obj) {
+//!     NSString* roomName = (NSString*)obj;
 //! }];
 //!
-//! [room on:SKW_ROOM_EVENT_PEER_JOIN callback:^(NSObject* arg1, NSObject* arg2) {
-//!     NSString* peerId = (NSString*)arg1;
+//! [room on:SKW_ROOM_EVENT_PEER_JOIN callback:^(NSObject* obj) {
+//!     NSString* peerId = (NSString*)obj;
 //! }];
 //!
-//! [room on:SKW_ROOM_EVENT_PEER_LEAVE callback:^(NSObject* arg1, NSObject* arg2) {
-//!     NSString* peerId = (NSString*)arg1;
+//! [room on:SKW_ROOM_EVENT_PEER_LEAVE callback:^(NSObject* obj) {
+//!     NSString* peerId = (NSString*)obj;
 //! }];
 //!
-//! [room on:SKW_ROOM_EVENT_ERROR callback:^(NSObject* arg1, NSObject* arg2) {
-//!     SKWPeerError* error = (SKWPeerError*)arg1;
+//! [room on:SKW_ROOM_EVENT_ERROR callback:^(NSObject* obj) {
+//!     SKWPeerError* error = (SKWPeerError*)obj;
 //! }];
 //!
-//! [room on:SKW_ROOM_EVENT_DATA callback:^(NSObject* arg1, NSObject* arg2) {
-//!     NSString* peerId = (NSString*)arg1;
-//!     if ([arg2 isKindOfClass:[NSString class]]) {
-//!         NSString* data = (NSString*)arg2;
+//! [room on:SKW_ROOM_EVENT_DATA callback:^(NSObject* obj) {
+//!     SKWRoomDataMessage* msg = (SKWRoomDataMessage*)obj;
+//!     NSString* peerId = msg.src;
+//!     if ([msg.data isKindOfClass:[NSString class]]) {
+//!         NSString* data = (NSString*)msg.data;
 //!     }
-//!     else if ([arg2 isKindOfClass:[NSData class]]) {
-//!         NSData* data = (NSData*)arg2;
+//!     else if ([msg.data isKindOfClass:[NSData class]]) {
+//!         NSData* data = (NSData*)msg.data;
 //!     }
 //! }];
 //!
-//! [room on:SKW_ROOM_EVENT_LOG callback:^(NSObject* arg1, NSObject* arg2) {
-//!     NSArray* logs = (NSArray*)arg1;
+//! [room on:SKW_ROOM_EVENT_LOG callback:^(NSObject* obj) {
+//!     NSArray* logs = (NSArray*)obj;
 //! }];
 //! \endcode
 //!
@@ -168,8 +175,8 @@ typedef void (^SKWRoomEventCallback)(NSObject* __nullable arg);
 //! \code{.m}
 //! SKWRoom* room;
 //!
-//! [room on:SKW_ROOM_EVENT_LOG callback:^(NSObject* arg1, NSObject* arg2) {
-//!     NSArray* logs = (NSArray*)arg1;
+//! [room on:SKW_ROOM_EVENT_LOG callback:^(NSObject* obj) {
+//!     NSArray* logs = (NSArray*)obj;
 //!     [logs enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL* stop) {
 //!         NSString* logStr = (NSString*)obj;
 //!         NSError* error = nil;

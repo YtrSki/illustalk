@@ -52,14 +52,22 @@ typedef NS_ENUM(NSUInteger, SKWPeerEventEnum)
     //! \~english Emitted when a remote peer attempts to call you.
     //! \~
     SKW_PEER_EVENT_CALL,
-    //! \~japanese ピアが破棄された時のイベントです
-    //! \~english Emitted when the peer is destroyed and can no longer accept or create any new connections
+    //! \~japanese peer.destroy()を実行したときに発生するイベントです。本イベント発生後は、シグナリングサーバとの接続、およびすべてのmediaConnection, dataConnectionが切断され、さらにすべてのRoomから退出させられます。
+    //! \~english Emitted when peer.destroy() is executed. After this event, the connection to the signaling server, all mediaConnection and dataConnection will be disconnected and the user will be ejected from all Rooms.
     //! \~
     SKW_PEER_EVENT_CLOSE,
-    //! \~japanese ピアが切断された時のイベントです
-    //! \~english Emitted when the peer is disconnected from the signalling server, either manually or because the connection to the signalling server was lost.
+    
+    //! \~japanese
+    //! ピアが切断された時のイベントです
+    //! (非推奨)
+    //! @deprecated
+    //! この列挙値は非推奨となりました。
+    //! \~english
+    //! Emitted when the peer is disconnected from the signalling server, either manually or because the connection to the signalling server was lost.
+    //! @deprecated
+    //! This enumerator is now deprecated.
     //! \~
-    SKW_PEER_EVENT_DISCONNECTED,
+    SKW_PEER_EVENT_DISCONNECTED __attribute__((deprecated("this event is not fired"))),
     //! \~japanese エラーが発生したときのイベントです
     //! \~english Errors on the peer are almost always fatal and will destroy the peer.
     //! \~
@@ -156,6 +164,8 @@ typedef void (^SKWPeerEventCallback)(NSObject* __nullable arg);
 //! options.domain = @”{your-domain}”;
 //! options.debug = SKW_PEER_DEBUG_LEVEL_ALL_LOGS;
 //! options.turn = YES;
+//! options.tryReconnectMedia = YES:
+//! options.tryReconnectData = YES:
 //!
 //! SKWPeer* peer = [[SKWPeer alloc] initWithOptions:options];
 //! \endcode
@@ -183,6 +193,8 @@ typedef void (^SKWPeerEventCallback)(NSObject* __nullable arg);
 //! options.domain = @”{your-domain}”;
 //! options.debug = SKW_PEER_DEBUG_LEVEL_ALL_LOGS;
 //! options.turn = YES;
+//! options.tryReconnectMedia = YES:
+//! options.tryReconnectData = YES:
 //!
 //! SKWPeer* peer = [[SKWPeer alloc] initWithId:curtomPeerId options:options];
 //! \endcode
@@ -379,41 +391,32 @@ typedef void (^SKWPeerEventCallback)(NSObject* __nullable arg);
 - (void)on:(SKWPeerEventEnum)event callback:(SKWPeerEventCallback __nullable)callback;
 
 //! \~japanese
-//! すべてのコネクションを切断し、シグナリングサーバとの接続を切断します。
+//! (非推奨) シグナリングサーバとの接続を切断します。なお、接続済みのmediaConnection, dataConnectionは継続されます。
+//! @deprecated
+//! このメソッドは非推奨となりました。代わりに [SKWPeer -destroy] を使用してください。
+//!
 //! \~english
-//! Close the connection to the server, leaving all existing data and media connections intact.
-//! peer.disconnected will be set to true and the disconnected event will fire.
+//! (deprecated) Close the connection to the signaling server. In addition, the connected mediaConnection and dataConnection are continued.
+//! @deprecated
+//! This method is now deprecated. Use [SKWPeer -destroy] instead.
 //! \~
-//!
-//!
-//! \code{.m}
-//! SKWPeer* peer;
-//!
-//! [peer disconnect];
-//! \endcode
-//!
-//! @return
-//! \~japanese 呼び出し結果
-//! \~english Processing result
-//! \~
-- (BOOL)disconnect;
-
-//! \~japanese シグナリングサーバとの再接続を行います。 ピア ID は既に割当済みの ID を使用します。
-//! \~english Attempt to reconnect to the server with the peer's old ID.
-//! \~
-//!
-//! \code{.m}
-//! SKWPeer* peer;
-//!
-//! [peer reconnect];
-//! \endcode
-//!
-- (void)reconnect;
+- (BOOL)disconnect __attribute__((deprecated("use destroy method instead")));
 
 //! \~japanese
-//! ピアオブジェクトを破棄状態にします。
+//! (非推奨) シグナリングサーバへ再接続します。再接続の際には割り当て済みのPeer IDを使用します。
+//! @deprecated
+//! このメソッドは非推奨となりました。代わりにPeerを再生成することを推奨します。
 //! \~english
-//! Close the connection to the server and terminate all existing connections. peer.destroyed will be set to true.
+//! (deprecated) Reconnect to the signaling server. Use the assigned Peer ID when reconnecting.
+//! @deprecated
+//! This method is now deprecated.  Recreate peer instance instead.
+//! \~
+- (void)reconnect __attribute__((deprecated("recreate a Peer instance instead")));
+
+//! \~japanese
+//! シグナリングサーバとの接続、および、接続済みのmediaConnection, dataConnectionを切断します。
+//! \~english
+//! Close the connection to the signaling server and the already connected mediaConnection and dataConnection.
 //! \~
 //!
 //! \code{.m}
@@ -449,6 +452,37 @@ typedef void (^SKWPeerEventCallback)(NSObject* __nullable arg);
 //! \~english Callback block
 //! \~
 - (void)listAllPeers:(void (^ __nullable)(NSArray * __nullable))callback;
+
+//! \~japanese
+//! 指定した Peer ID の Peer が存在するかどうかをシグナリングサーバから取得します。
+//! \~english
+//! Fetch whether Peer specified by Peer ID exists from the signaling server.
+//! \~
+//!
+//! \code{.m}
+//! SKWPeer* peer;
+//! NSString* peerId;
+//!
+//! [peer fetchPeerExistsWithPeerId:peerId success:^(BOOL exists) {
+//!     // something to do.
+//! } error:^(NSString* __nonnull message) {
+//!     // something to do.
+//! }];
+//! \endcode
+//!
+//! @param peerId
+//! \~japanese 存在を確認したい Peer の Peer ID を指定します。
+//! \~english Specify the Peer ID of the Peer whose existence you want to check.
+//! \~
+//! @param success
+//! \~japanese Peer が存在するかどうかを取得した時に実行するコールバックを設定します。
+//! \~english Set the callback to be executed when the existence of the Peer is fetched.
+//! \~
+//! @param error
+//! \~japanese エラー発生時に実行するコールバックを設定します。
+//! \~english Set the callback to be executed when an error is occured.
+//! \~
+- (void)fetchPeerExistsWithPeerId:(NSString* __nonnull)peerId success:(void (^ __nonnull)(BOOL))successCallback error:(void (^ __nullable)(NSString* __nonnull))errorCallback;
 
 #ifndef DOXYGEN_SKIP_THIS
 - (SKWConnection* __nullable)getConnectionWithId:(NSString* __nonnull)peerId connectionId:(NSString* __nonnull)connectionId;

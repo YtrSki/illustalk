@@ -23,13 +23,17 @@
 //! \~
 @property (nonatomic) NSUInteger audioBandwidth;
 
-//! \~japanese 映像コーデックを明示的に指定します。 (例:H264)
-//! \~english A video codec like 'H264'
+//! \~japanese 映像コーデックを指定します。対応コーデックは端末機種により異なります。\n
+//! 取りうる値は次のとおりです。'H264', 'VP8', 'VP9'
+//! \~english Video Codec. The supported codecs are different depending on the device model.\n
+//! The following values are possible. 'H264', 'VP8', 'VP9'
 //! \~
 @property (nonatomic) NSString* __nullable videoCodec;
 
-//! \~japanese 音声コーデックを明示的に指定します。 (例:PCMU)
-//! \~english A audio codec like 'PCMU'
+//! \~japanese 音声コーデックを指定します。対応コーデックは端末機種により異なります。\n
+//! 取りうる値は次のとおりです。'opus', 'ISAC', 'G722', 'PCMU', 'PCMA'
+//! \~english Audio Codec. The supported codecs are different depending on the device model.\n
+//! The following values are possible. 'opus', 'ISAC', 'G722', 'PCMU', 'PCMA'
 //! \~
 @property (nonatomic) NSString* __nullable audioCodec;
 

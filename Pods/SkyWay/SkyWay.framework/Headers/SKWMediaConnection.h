@@ -138,8 +138,8 @@ typedef void (^SKWMediaConnectionEventCallback)(NSObject* __nullable arg);
 //! \~
 - (void)answer:(SKWMediaStream* __nullable)stream options:(SKWAnswerOption* __nullable)options;
 
-//! \~japanese SKWMediaConnection を閉じます。
-//! \~english Closes the media connection.
+//! \~japanese SKWMediaConnection を閉じます。forceClose オプションを NO として実行します。将来のバージョンから YES に変更される可能性があります。
+//! \~english Closes the media connection. Run the forceClose option as NO. May be changed to YES from a future version.
 //! \~
 //!
 //! \code{.m}
@@ -149,6 +149,23 @@ typedef void (^SKWMediaConnectionEventCallback)(NSObject* __nullable arg);
 //! media = nil;
 //! \endcode
 - (void)close;
+
+//! \~japanese forceClose オプションを指定して、 SKWMediaConnection を閉じます。
+//! \~english Closes the media connection with the forceClose option.
+//! \~
+//!
+//! \code{.m}
+//! SKWMediaConnection* media;
+//!
+//! [media close:YES];
+//! media = nil;
+//! \endcode
+//!
+//! @param forceClose
+//! \~japanese この値がYESの場合、相手の MediaConnection も即座に close します。NOの場合、相手は ice 再接続が失敗してから MediaConnection を close します。
+//! \~english Set to YES and the connection on remote peer will close immediately. When set to NO, the connection on remote peer will close after the end of the ICE reconnect by the browser.
+//! \~
+- (void)close:(BOOL)forceClose;
 
 //! \~japanese SKWMediaConnection のイベントコールバック Block を設定します。
 //! \~english Set callbacks for media connection events. (Block Literal Syntax)

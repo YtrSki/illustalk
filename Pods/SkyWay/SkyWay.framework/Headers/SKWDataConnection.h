@@ -89,8 +89,8 @@ typedef void (^SKWDataConnectionEventCallback)(NSObject* __nullable arg);
 //! \~
 - (BOOL)send:(NSObject* __nonnull)data;
 
-//! \~japanese データ通信接続の切断と解放をおこないます。
-//! \~english Closes the data connection gracefully, cleaning up underlying DataChannels and PeerConnections.
+//! \~japanese データ通信接続の切断と解放をおこないます。forceClose オプションを NO として実行します。将来のバージョンから YES に変更される可能性があります。
+//! \~english Closes the data connection gracefully, cleaning up underlying DataChannels and PeerConnections. Run the forceClose option as NO. May be changed to YES from a future version.
 //! \~
 //! \code{.m}
 //! SKWDataConnection* data;
@@ -98,6 +98,22 @@ typedef void (^SKWDataConnectionEventCallback)(NSObject* __nullable arg);
 //! data = nil;
 //! \endcode
 - (void)close;
+
+//! \~japanese forceClose オプションを指定して、データ通信接続の切断と解放をおこないます。
+//! \~english Closes the data connection gracefully, cleaning up underlying DataChannels and PeerConnections with the forceClose option.
+//! \~
+//!
+//! \code{.m}
+//! SKWDataConnection* data;
+//! [data close:YES];
+//! data = nil;
+//! \endcode
+//!
+//! @param forceClose
+//! \~japanese この値がYESの場合、相手の DataConnection も即座に close します。
+//! \~english Set to YES and the connection on remote peer will close immediately.
+//! \~
+- (void)close:(BOOL)forceClose;
 
 //! \~japanese SKWDataConnection のイベントコールバック Block を設定します。
 //! \~english Set callbacks for data connection events. (Block Literal Syntax)
