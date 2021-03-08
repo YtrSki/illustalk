@@ -1,6 +1,7 @@
 # elderly_illustalk
 
 高齢者向けのiPadビデオ通話アプリケーション（プライベートリポジトリからの手動フォーク）
+
 プロジェクト型授業「システム情報科学実習」にて、5名のグループで開発
 
 概要スライド：https://drive.google.com/file/d/1F_YJcsQRhhoGdxunDNaE-mBIGpwbL4Hc/view?usp=sharing
